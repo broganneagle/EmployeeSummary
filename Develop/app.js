@@ -4,101 +4,12 @@ const intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const jest = require("jest");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
-let employees = []
-addManager = () => {
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "What is their name?",
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "What is their ID?",
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "What is their email?",
-        },
-        {
-            type: "input",
-            name: "school",
-            message: "What school did they attend?",
-        }
-    ])
-    .then(answers => {
-        const manager = new Manager(answers.name, answers.email, answers.id, answers.school);
-        employees.push(manager)
-        selectEmployeeType()
-    })
-}
-
-addEngineer = () => {
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "What is their name?",
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "What is their ID?",
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "What is their email?",
-        },
-        {
-            type: "input",
-            name: "school",
-            message: "What school did they attend?",
-        }
-    ])
-    .then(answers => {
-        const engineer = new Engineer(answers.name, answers.email, answers.id, answers.school);
-        employees.push(engineer)
-        selectEmployeeType()
-    })
-}
-addIntern = () => {
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "What is their name?",
-        },
-        {
-            type: "input",
-            name: "id",
-            message: "What is their ID?",
-        },
-        {
-            type: "input",
-            name: "email",
-            message: "What is their email?",
-        },
-        {
-            type: "input",
-            name: "school",
-            message: "What school did they attend?",
-        }
-    ])
-    .then(answers => {
-        const intern = new Intern(answers.name, answers.email, answers.id, answers.school);
-        employees.push(intern)
-        selectEmployeeType()
-    })
-}
 
 selectEmployeeType = () => {
     inquirer.prompt([
@@ -131,12 +42,102 @@ selectEmployeeType = () => {
         }
     })
 }
+let employees = []
+
+addManager = () => {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is their name?",
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is their ID?",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is their email?",
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is their office number?",
+        }
+    ])
+    .then(answers => {
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        employees.push(manager)
+        selectEmployeeType()
+    })
+}
+
+addEngineer = () => {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is their name?",
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is their ID?",
+        },
+        {
+            type: "input",
+            name: "gitHub",
+            message: "What is their github username?",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is their email?",
+        }
+    ])
+    .then(answers => {
+        const engineer = new Engineer(answers.name, answers.id,answers.email, answers.gitHub);
+        employees.push(engineer)
+        selectEmployeeType()
+    })
+}
+addIntern = () => {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is their name?",
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is their ID?",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is their email?",
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What school did they attend?",
+        }
+    ])
+    .then(answers => {
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+        employees.push(intern)
+        selectEmployeeType()
+    })
+}
 
 writeOuput = () => {
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFileSync(outputPath, render(employees), "utf8")
+    fs.writeFileSync(outputPath, render(employees), "UTF-8")
 }
 selectEmployeeType()
 
