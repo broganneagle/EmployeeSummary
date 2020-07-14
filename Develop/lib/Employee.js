@@ -2,7 +2,7 @@
 const inquirer = require("inquirer");
 
 class employee {
-    constructor(name, id, email, officeNumber, github, school) {
+    constructor(name, id, email, officeNumber, role, github, school) {
         this.name = name;
         this.email = email;
         this.id = id;
@@ -30,7 +30,7 @@ class employee {
         return this.school;
     }
     getRole() {
-        return this.role;
+        return "Employee";
     }
 }
 

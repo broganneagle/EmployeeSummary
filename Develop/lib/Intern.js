@@ -1,6 +1,6 @@
-const employee = require("./Employee");
+const Employee = require("./Employee");
 
-class intern extends employee {
+class Intern extends Employee {
     constructor(name, id, email, school){
 
         super(name, id, email);
@@ -14,8 +14,8 @@ class intern extends employee {
 
     //returns role
     getRole() {
-        return "intern";
+        return "Intern";
     };
 };
 
-module.exports = intern;
+module.exports = Intern;
