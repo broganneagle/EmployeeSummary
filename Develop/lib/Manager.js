@@ -1,5 +1,5 @@
-const Employee = require("./employee");
-class Manager extends Employee {
+const employee = require("./employee");
+class manager extends employee {
 
     constructor(name, id, email, officeNumber) {
 
@@ -14,8 +14,8 @@ class Manager extends Employee {
     };
 
     getRole() {
-        return "Manager";
+        return "manager";
     };
 
 };
-module.exports = Manager;
+module.exports = manager;

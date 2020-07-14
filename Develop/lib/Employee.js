@@ -1,7 +1,7 @@
 //create employee object with name, id, email
 const inquirer = require("inquirer");
 
-class Employee {
+class employee {
     constructor(name, id, email) {
         this.name = name;
         this.email = email;
@@ -22,4 +22,4 @@ class Employee {
     }
 }
 
-module.exports = Employee;
+module.exports = employee;
