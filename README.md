@@ -12,4 +12,3 @@ so that I have quick access to emails and GitHub profiles
 The project prompts the user to build an engineering team. An engineering
 team consists of a manager, and any number of engineers and interns.
 
-## Link
